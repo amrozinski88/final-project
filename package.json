@@ -1,0 +1,30 @@
+{
+  "name": "budget-buddy",
+  "version": "1.0.0",
+  "description": "mern stack final project heres a change",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amrozinski88/final-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amrozinski88/final-project/issues"
+  },
+  "homepage": "https://github.com/amrozinski88/final-project#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.7.8"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^1.19.4"
+  }
+}
