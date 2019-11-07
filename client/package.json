@@ -1,7 +1,9 @@
 {
-  "name": "budget-buddy",
+  "name": "client",
   "version": "0.1.0",
+  "description": "Final Project",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
