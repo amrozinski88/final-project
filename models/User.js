@@ -15,12 +15,16 @@ const UserSchema = new Schema({
     fbauth: {
         something: String
     },
+    accountBalance:{
+        type: mongoose.Decimal128,
+        required: true
+    },
     transactions: [
             {
               type: Schema.Types.ObjectId,
               ref: "Transaction"
             }
-          ]
+          ],
     
 
 
