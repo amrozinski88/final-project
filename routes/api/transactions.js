@@ -6,5 +6,7 @@ router.route("/")
     .get(transactionsController.findAllTransactions)
     .post(transactionsController.addTransaction);
 
+    router.route("/:id")
+    .get(transactionsController.findById)
 
 module.exports = router;
