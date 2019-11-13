@@ -14,18 +14,22 @@ const seeder = async () => {
         accountBalance: 1000
     })
         .then(newUser=>newUser.id)
-    const transactionID = await db.Transaction.create({
+    const transaction = await db.Transaction.create({
         deposit: true,
         amount: 1000,
         paidTo: "bank",
         note: "it worked"
-    }).then(newTransaction=>newTransaction.id)
+    }).then(newTransaction=>newTransaction)
     await db.User.findOneAndUpdate({_id:userid},
         {$push:{
-            transactions: transactionID
+            transactions: transaction.id
+        },$inc: {
+            accountBalance: transaction.deposit ? transaction.amount : -transaction.amount
         }},
         {new: true}
-    ).then(data=>console.log(data))
+    ).then(data=>{
+        console.log(data)
+    })
 }
 seeder()
 

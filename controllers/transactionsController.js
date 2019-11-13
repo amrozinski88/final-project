@@ -20,14 +20,16 @@ module.exports = {
                         transactions: addedTransaction.id
                     },
                     $inc: {accountBalance: amount}
-                }, { new: true })
+                }, { new: true }).populate("transactions")
                 .then(user=>res.json(user))
+                .catch(err=>res.status(422).json(err))
             })
-            .catch(error => console.log(error))
+            .catch(err=>res.status(422).json(err))
 
     },
 
     findAllTransactions: (req, res) => {
+        console.log(`it worked`)
         db.Transaction
             .find()
             .then(transactions => {

@@ -1,9 +1,10 @@
 const express = require("express");
-
 const router = express.Router();
+const transactionsController = require("../../controllers/transactionsController");
+//   route for /api/transactions
+router.route("/")
+    .get(transactionsController.findAllTransactions)
+    .post(transactionsController.addTransaction);
 
-router.route("/").get((req,res)=>{
-    res.json("it worked")
-})
 
-module.exports = router
+module.exports = router;
