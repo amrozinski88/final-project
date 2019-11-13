@@ -3,7 +3,7 @@ const transactionsRoutes = require("./transactions");
 const usersRoutes = require("./users");
 
 router.use("/transactions",transactionsRoutes);
-// router.use("/users",usersRoutes);
+router.use("/users",usersRoutes);
 
 
 
