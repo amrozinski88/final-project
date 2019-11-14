@@ -9,8 +9,15 @@ module.exports = {
     },
     findOneUser: (req,res)=>{
         db.User
-        .findOne({email:req.query.email})
+        .findOne({email:req.query.email}).populate("transactions")
         .then(currentUser=>res.json(currentUser))
         .catch(error=>res.status(404).json(error))
+    },
+    deleteUser: (req,res)=>{
+        db.User
+        .deleteOne({email:req.query.email})
+        .then(data=>res.json(`${data}  Acount deleted`))
+
     }
 }
+
