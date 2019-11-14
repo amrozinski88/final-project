@@ -1,9 +1,18 @@
+require("dotenv").config();
+require("./config/connection");
 const express = require("express");
 const path = require("path");
 const PORT = process.env.port || 3001;
 const app = express();
-const routes = require("./routes")
-require("./config/connection");
+const admin = require("firebase-admin")
+const routes = require("./routes");
+const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  databaseURL: "https://final-project-ucf.firebaseio.com"
+})
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

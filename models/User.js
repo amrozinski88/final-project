@@ -13,7 +13,7 @@ const UserSchema = new Schema({
         required: true,
     },
     fbauth: {
-        something: String
+        type: String
     },
     accountBalance:{
         type: mongoose.Decimal128,
