@@ -8,7 +8,8 @@ module.exports = {
         .catch(error=> res.json(error))
     },
     findOneUser: (req,res)=>{
-        db.User.findOneAndUpdate({email:req.params.email})
+        db.User
+        .findOne({email:req.query.email})
         .then(currentUser=>res.json(currentUser))
         .catch(error=>res.status(404).json(error))
     }

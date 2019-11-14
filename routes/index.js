@@ -6,4 +6,4 @@ router.use("/api",apiRoutes);
 
 router.use((req,res)=>res.status(404).json("Endpoint not found try another"));
 
-module.exports = router;
+module.exports = router;    
