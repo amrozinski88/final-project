@@ -32,14 +32,29 @@ module.exports = {
       });
   },
   findOneUser: (req, res) => {
-    db.User.findOne({ email: req.query.email })
+    db.User.findOne({ email: req.params.email })
       .populate("transactions")
       .then(currentUser => res.json(currentUser))
       .catch(error => res.status(404).json(error));
   },
+  getUserTransactions: (req,res)=>{
+    db.User.findOne({ email: req.params.email })
+    .populate("transactions")
+    .then(currentUser => res.json(currentUser.transactions))
+    .catch(error => res.status(404).json(error));
+  },
   deleteUser: (req, res) => {
-    db.User.deleteOne({ email: req.query.email }).then(data =>
-      res.json(`${data}  Acount deleted`)
-    );
+    db.User.findOne({email:req.body.email})
+        .then(user=>{
+            db.User.deleteOne({ email: user.email })
+            .then(data =>{
+                if(data.n === 1){
+                    admin.auth().deleteUser(user.fbauth)
+                    .then(()=>res.json(`Account Deleted`))
+                    .catch(error=>res.status(500).json(`Could not delete user fb delete`))
+                }
+            }).catch(error=>res.status(422).json(`Could not delete user mongo delete`));
+        }).catch(error=>res.status(422).json(`Could not delete user mongo find user`));
+    
   }
 };

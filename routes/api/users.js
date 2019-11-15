@@ -8,4 +8,14 @@ router.route("/")
 .post(usersController.createUser)
 .delete(usersController.deleteUser)
 
+
+
+
+router.route("/:email")
+.get(usersController.findOneUser)
+
+
+
+
 module.exports = router;
+
