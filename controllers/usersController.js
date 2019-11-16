@@ -44,17 +44,19 @@ module.exports = {
     .catch(error => res.status(404).json(error));
   },
   deleteUser: (req, res) => {
-    db.User.findOne({email:req.body.email})
+    db.User.findOne({email: req.body.email})
         .then(user=>{
             db.User.deleteOne({ email: user.email })
             .then(data =>{
                 if(data.n === 1){
                     admin.auth().deleteUser(user.fbauth)
                     .then(()=>res.json(`Account Deleted`))
-                    .catch(error=>res.status(500).json(`Could not delete user fb delete`))
+                    .catch(error=>res.json(error))
+                } else {
+                  res.json('no-users deleted');
                 }
-            }).catch(error=>res.status(422).json(`Could not delete user mongo delete`));
-        }).catch(error=>res.status(422).json(`Could not delete user mongo find user`));
+            }).catch(error=>res.json(error));
+        }).catch(error=>res.json(error));
     
   }
 };

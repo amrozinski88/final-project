@@ -6,13 +6,14 @@ const authChecker = require("../../controllers/authMiddleware")
 router.route("/")
 .get(authChecker,usersController.findOneUser)
 .post(usersController.createUser)
-.delete(usersController.deleteUser)
+
 
 
 
 
 router.route("/:email")
 .get(usersController.findOneUser)
+.delete(usersController.deleteUser)
 
 
 
